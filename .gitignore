@@ -1,0 +1,36 @@
+# Virtual Environment
+venv/
+env/
+ENV/
+
+# Reports and outputs
+reports/
+*.log
+
+# Email data and attachments
+data/attachments/
+data/*.mbox
+Data/*.mbox
+Data/Attachments/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+~$*
+*.tmp

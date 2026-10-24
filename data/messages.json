@@ -1,0 +1,18 @@
+[
+  {
+    "id": "<msg1@example.com>",
+    "subject": "Urgent wire transfer",
+    "from": "\"CEO\" <ceo@company.com>",
+    "to": "finance1@company.com",
+    "date": "Sat, 13 Dec 2025 10:12:00 +0200",
+    "body_preview": "Please process the attached invoice urgently.\n"
+  },
+  {
+    "id": "<msg2@company.com>",
+    "subject": "Policy update",
+    "from": "\"HR\" <hr@company.com>",
+    "to": "employee@company.com",
+    "date": "Sat, 13 Dec 2025 11:05:00 +0200",
+    "body_preview": "Please see the policy updates attached.\n"
+  }
+]
