@@ -1,0 +1,40 @@
+From ceo@company.com Sat Dec 13 10:12:00 2025
+Date: Sat, 13 Dec 2025 10:12:00 +0200
+From: "CEO" <ceo@company.com>
+To: finance1@company.com
+Subject: Urgent wire transfer
+Message-ID: <msg1@example.com>
+Return-Path: <spoofed@external-malicious.com>
+Reply-To: attacker@exfil.example
+Received: from mail.external-malicious.com (mail.external-malicious.com [203.0.113.45])
+    by mx.company.com with SMTP id 12345; Sat, 13 Dec 2025 10:11:50 +0200
+Authentication-Results: mx.company.com; spf=fail smtp.mailfrom=external-malicious.com
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="BOUNDARY1"
+
+--BOUNDARY1
+Content-Type: text/plain; charset="utf-8"
+
+Please process the attached invoice urgently.
+
+--BOUNDARY1
+Content-Type: application/msword; name="invoice.docm"
+Content-Disposition: attachment; filename="invoice.docm"
+Content-Transfer-Encoding: base64
+
+VGhpcyBpcyBhIHRlc3QgYXR0YWNobWVudA==
+--BOUNDARY1--
+
+From hr@company.com Sat Dec 13 11:05:00 2025
+Date: Sat, 13 Dec 2025 11:05:00 +0200
+From: "HR" <hr@company.com>
+To: employee@company.com
+Subject: Policy update
+Message-ID: <msg2@company.com>
+Return-Path: <hr@company.com>
+Received: from mail.company.com (mail.company.com [10.10.1.5])
+    by mx.company.com with SMTP id 54321; Sat, 13 Dec 2025 11:04:50 +0200
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+
+Please see the policy updates attached.

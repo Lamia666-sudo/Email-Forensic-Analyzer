@@ -1,11 +1,13 @@
 # Email Forensics Analyzer
 
+![GUI Screenshot](screenshot.png)
+
 A modular email forensic analysis tool that detects spoofing and phishing indicators in MBOX email exports. The tool analyzes email headers, attachments, and authentication results to generate comprehensive forensic reports with severity scoring.
 
 ## Features
 
 - **Header Analysis**: Detects From/Return-Path mismatches, Reply-To inconsistencies, and Message-ID domain anomalies
-- **Authentication Checks**: Parses SPF, DKIM, and DMARC results from Authentication-Results headers
+- **Authentication Checks**: Parses SPF and DKIM results from Authentication-Results headers
 - **Attachment Inspection**: Identifies suspicious file types, calculates SHA-256 hashes for evidence integrity, and flags oversized files
 - **Scoring System**: Assigns suspicion scores (0-15+) and maps to severity levels (Low/Medium/High)
 - **Multiple Output Formats**: Generates JSON, CSV, and human-readable TXT reports
@@ -32,8 +34,8 @@ A modular email forensic analysis tool that detects spoofing and phishing indica
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
-cd Email-Forensics-Analyzer
+git clone https://github.com/Lamia666-sudo/Email-Forensic-Analyzer.git
+cd Email-Forensic-Analyzer
 ```
 
 2. Create and activate a virtual environment:
@@ -70,7 +72,7 @@ Run the unified pipeline:
 python pipeline.py path/to/your/file.mbox
 ```
 
-If no path is provided, it defaults to `data/raw_emails.mbox`.
+If no path is provided, it defaults to `data/raw_emails.mbox`. A sample file is provided in `samples/sample_emails.mbox` for testing.
 
 ### Manual Step-by-Step
 
@@ -78,7 +80,7 @@ For debugging or custom workflows, run individual steps:
 
 1. Parse MBOX file:
 ```bash
-python parser/mbox_reader.py data/raw_emails.mbox
+python parser/mbox_reader.py samples/sample_emails.mbox
 ```
 
 2. Analyze attachments:
@@ -148,7 +150,7 @@ Attachments :
 
 ```
 Email-Forensics-Analyzer/
-├── Analysis/
+├── analysis/
 │   ├── attachment_checks.py      # Attachment analysis with SHA-256 hashing
 │   ├── enhanced_analysis.py     # Final scoring and report generation
 │   ├── interaction_graph.py      # Sender-recipient relationship mapping
@@ -160,7 +162,9 @@ Email-Forensics-Analyzer/
 │   └── rotate_reports.py         # Report management utilities
 ├── data/
 │   ├── attachments/               # Extracted attachments (do not commit)
-│   └── raw_emails.mbox           # Sample/test MBOX file
+│   └── raw_emails.mbox           # Default MBOX input file
+├── samples/
+│   └── sample_emails.mbox         # Sample MBOX file for testing
 ├── reports/                      # Generated reports (do not commit)
 ├── gui_launcher.py               # GUI interface
 ├── pipeline.py                   # Unified analysis pipeline
@@ -170,11 +174,11 @@ Email-Forensics-Analyzer/
 
 ## Authors
 
-Developed by [Your Name]
+Developed by Lamiaa Ahmed Higazi
 
 ## License
 
-This project is for educational and forensic research purposes.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Contributing
 
