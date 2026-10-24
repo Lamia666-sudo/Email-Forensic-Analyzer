@@ -71,6 +71,12 @@ def main(mbox_path: str = None):
     # Ensure reports and attachments directories exist
     (BASE_DIR / "reports").mkdir(exist_ok=True)
     (BASE_DIR / "data" / "attachments").mkdir(parents=True, exist_ok=True)
+    
+    # Clear previous messages.json to prevent case mixing
+    messages_json = BASE_DIR / "reports" / "messages.json"
+    if messages_json.exists():
+        messages_json.unlink()
+        print("[INFO] Cleared previous messages.json to prevent case mixing")
 
     # Step 1: Parse MBOX (pass the mbox path)
     run_step(

@@ -72,7 +72,7 @@ Run the unified pipeline:
 python pipeline.py path/to/your/file.mbox
 ```
 
-If no path is provided, it defaults to `data/raw_emails.mbox`. A sample file is provided in `samples/sample_emails.mbox` for testing.
+A sample file is provided in `samples/sample_emails.mbox` for testing.
 
 ### Manual Step-by-Step
 
@@ -153,16 +153,14 @@ Email-Forensics-Analyzer/
 ├── analysis/
 │   ├── attachment_checks.py      # Attachment analysis with SHA-256 hashing
 │   ├── enhanced_analysis.py     # Final scoring and report generation
-│   ├── interaction_graph.py      # Sender-recipient relationship mapping
-│   └── spoofing_checks.py        # Header spoofing detection
+│   └── interaction_graph.py      # Sender-recipient relationship mapping
 ├── parser/
 │   └── mbox_reader.py            # MBOX parsing and extraction
 ├── scripts/
 │   ├── regen_check.py            # Test/regeneration script
 │   └── rotate_reports.py         # Report management utilities
 ├── data/
-│   ├── attachments/               # Extracted attachments (do not commit)
-│   └── raw_emails.mbox           # Default MBOX input file
+│   └── attachments/               # Extracted attachments (do not commit)
 ├── samples/
 │   └── sample_emails.mbox         # Sample MBOX file for testing
 ├── reports/                      # Generated reports (do not commit)
@@ -183,3 +181,12 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Contributing
 
 Contributions are welcome. Please ensure any test data is synthetic and does not contain real personal information.
+
+## Limitations
+
+- **Authentication Parsing**: The tool parses SPF and DKIM results from Authentication-Results headers but does not perform independent DNS verification. It relies on the receiving mail server's authentication results.
+- **Domain Comparison**: Organizational domain extraction uses a simple heuristic (taking the last two parts of a domain). This may not work correctly for all country-code TLDs (e.g., .co.uk).
+- **Attachment Analysis**: File type detection is based on extension only. Magic number (file signature) analysis is not implemented, so renamed executables may evade detection.
+- **URL Analysis**: The tool does not extract or analyze URLs from email bodies for link text vs destination mismatches.
+- **False Positives**: Legitimate mailing services and newsletters may trigger From/Return-Path mismatches. Manual review is recommended for Medium and High severity messages.
+- **Scope**: The tool focuses on header analysis and basic attachment inspection. It does not perform content analysis, behavioral analysis, or threat intelligence lookups.

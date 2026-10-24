@@ -43,15 +43,30 @@ def recompute_spoof_flags(msg):
     auth_results = (msg.get("authentication_results") or "").lower()
 
     def domain(a): return a.split("@")[-1].lower() if "@" in a else ""
+    
+    def organizational_domain(d):
+        """Extract organizational domain (e.g., mail.company.com -> company.com)"""
+        parts = d.split(".")
+        if len(parts) >= 2:
+            return ".".join(parts[-2:])
+        return d
 
-    if return_path and from_addr and domain(return_path) != domain(from_addr):
-        flags.append("From vs Return-Path mismatch")
-        score += 3
+    if return_path and from_addr:
+        org_return = organizational_domain(domain(return_path))
+        org_from = organizational_domain(domain(from_addr))
+        if org_return != org_from:
+            flags.append("From vs Return-Path mismatch")
+            score += 3
     if reply_to and reply_to.lower() != from_addr.lower():
         flags.append("Reply-To mismatch")
         score += 2
-    if "spf=fail" in auth_results or "dkim=fail" in auth_results:
-        flags.append("SPF/DKIM fail")
+    
+    # Check for SPF/DKIM issues including softfail, none, temperror
+    spf_issues = ["spf=fail", "spf=softfail", "spf=none", "spf=temperror"]
+    dkim_issues = ["dkim=fail", "dkim=none", "dkim=temperror"]
+    
+    if any(x in auth_results for x in spf_issues) or any(x in auth_results for x in dkim_issues):
+        flags.append("SPF/DKIM authentication issue")
         score += 3
     elif auth_results == "":
         flags.append("Missing Authentication-Results")
